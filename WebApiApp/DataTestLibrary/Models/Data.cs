@@ -12,16 +12,18 @@ namespace WebApiApp.Models
 
         public string Name { get; set; }
 
-        public Property1 Prop1 { get; set; }
+        public virtual Property1 Prop1 { get; set; }
+        public Guid Prop1Id { get; set; }
 
-        public Property2 Prop2 { get; set; }
-
-        public ICollection<SubData> SubData { get; set; }
+        public virtual Property2 Prop2 { get; set; }
+        public Guid Prop2Id { get; set; }
 
         public int Count { get; set; }
 
         public bool Flag { get; set; }
 
         public decimal Sum { get; set; }
+
+        public virtual ICollection<SubData> SubData { get; set; }
     }
 }

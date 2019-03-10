@@ -12,15 +12,17 @@ namespace DataTestLibrary.Interface
         string Name { get; set; }
 
         Property1 Prop1 { get; set; }
+        Guid Prop1Id { get; set; }
 
         Property2 Prop2 { get; set; }
-
-        ICollection<SubData> SubData { get; set; }
+        Guid Prop2Id { get; set; }
 
         int Count { get; set; }
 
         bool Flag { get; set; }
 
         decimal Sum { get; set; }
+
+        ICollection<SubData> SubData { get; set; }
     }
 }

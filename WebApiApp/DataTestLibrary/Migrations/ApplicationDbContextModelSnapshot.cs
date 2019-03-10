@@ -30,9 +30,9 @@ namespace DataTestLibrary.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<Guid?>("Prop1Id");
+                    b.Property<Guid>("Prop1Id");
 
-                    b.Property<Guid?>("Prop2Id");
+                    b.Property<Guid>("Prop2Id");
 
                     b.Property<decimal>("Sum");
 
@@ -74,13 +74,13 @@ namespace DataTestLibrary.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid?>("ParentId");
+                    b.Property<Guid?>("DataId");
 
                     b.Property<decimal>("Value");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ParentId");
+                    b.HasIndex("DataId");
 
                     b.ToTable("SubDatas");
                 });
@@ -89,18 +89,20 @@ namespace DataTestLibrary.Migrations
                 {
                     b.HasOne("WebApiApp.Models.Property1", "Prop1")
                         .WithMany()
-                        .HasForeignKey("Prop1Id");
+                        .HasForeignKey("Prop1Id")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("WebApiApp.Models.Property2", "Prop2")
                         .WithMany()
-                        .HasForeignKey("Prop2Id");
+                        .HasForeignKey("Prop2Id")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("WebApiApp.Models.SubData", b =>
                 {
-                    b.HasOne("WebApiApp.Models.Data", "Parent")
+                    b.HasOne("WebApiApp.Models.Data", "Data")
                         .WithMany("SubData")
-                        .HasForeignKey("ParentId");
+                        .HasForeignKey("DataId");
                 });
 #pragma warning restore 612, 618
         }

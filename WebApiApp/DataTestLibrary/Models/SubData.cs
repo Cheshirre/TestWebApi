@@ -1,4 +1,5 @@
 ﻿using DataTestLibrary.Interface;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,9 @@ namespace WebApiApp.Models
     {
         public Guid Id { get; set; }
 
-        public Data Parent { get; set; }
-
         public decimal Value { get; set; }
+
+        public virtual Data Data { get; set; }
 
     }
 }

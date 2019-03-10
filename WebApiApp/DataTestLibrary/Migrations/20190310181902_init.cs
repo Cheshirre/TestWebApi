@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataTestLibrary.Migrations
 {
-    public partial class initial : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -37,8 +37,8 @@ namespace DataTestLibrary.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(nullable: true),
-                    Prop1Id = table.Column<Guid>(nullable: true),
-                    Prop2Id = table.Column<Guid>(nullable: true),
+                    Prop1Id = table.Column<Guid>(nullable: false),
+                    Prop2Id = table.Column<Guid>(nullable: false),
                     Count = table.Column<int>(nullable: false),
                     Flag = table.Column<bool>(nullable: false),
                     Sum = table.Column<decimal>(nullable: false)
@@ -51,13 +51,13 @@ namespace DataTestLibrary.Migrations
                         column: x => x.Prop1Id,
                         principalTable: "Property1s",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Datas_Property2s_Prop2Id",
                         column: x => x.Prop2Id,
                         principalTable: "Property2s",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -65,15 +65,15 @@ namespace DataTestLibrary.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    ParentId = table.Column<Guid>(nullable: true),
-                    Value = table.Column<decimal>(nullable: false)
+                    Value = table.Column<decimal>(nullable: false),
+                    DataId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SubDatas", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_SubDatas_Datas_ParentId",
-                        column: x => x.ParentId,
+                        name: "FK_SubDatas_Datas_DataId",
+                        column: x => x.DataId,
                         principalTable: "Datas",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -90,9 +90,9 @@ namespace DataTestLibrary.Migrations
                 column: "Prop2Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SubDatas_ParentId",
+                name: "IX_SubDatas_DataId",
                 table: "SubDatas",
-                column: "ParentId");
+                column: "DataId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

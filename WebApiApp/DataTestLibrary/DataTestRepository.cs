@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DataTestLibrary.Interface;
+using Microsoft.EntityFrameworkCore;
 using WebApiApp.Models;
 
 namespace DataTestLibrary
@@ -18,7 +19,7 @@ namespace DataTestLibrary
       
         public IEnumerable<IData> Get()
         {
-            return _dbContext.Datas.AsEnumerable();
+            return _dbContext.Datas.Include(x => x.Prop1).Include(x => x.Prop2).Include(x => x.SubData).AsEnumerable();
         }
 
         public IEnumerable<ISubData> GetSubDatas()

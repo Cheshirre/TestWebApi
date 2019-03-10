@@ -6,6 +6,8 @@ using DataTestLibrary;
 using DataTestLibrary.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebApiApp.Factory;
+using WebApiApp.Models;
 
 namespace WebApiApp.Controllers
 {
@@ -14,16 +16,18 @@ namespace WebApiApp.Controllers
     public class TestDataController : ControllerBase
     {
         private readonly IDataTestRepository _dataTestRepository;
+        private readonly IDataViewModelFactory _dataViewModelFactory;
 
-        public TestDataController(IDataTestRepository dataTestRepository)
+        public TestDataController(IDataTestRepository dataTestRepository, IDataViewModelFactory dataViewModelFactory)
         {
             _dataTestRepository = dataTestRepository;
+            _dataViewModelFactory = dataViewModelFactory;
         }
 
         [HttpGet]
-        public IEnumerable<IData> Get()
+        public IEnumerable<DataViewModel> Get()
         {
-            return _dataTestRepository.Get();
+            return _dataViewModelFactory.Create();
         }
     }
 }

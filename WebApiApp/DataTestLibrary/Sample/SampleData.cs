@@ -52,38 +52,44 @@ namespace DataTestLibrary.Sample
                     Prop2 = (Property2)dataTestRepository.GetProperty2s().FirstOrDefault(),
                     SubData = null
                 });
-                //dataTestRepository.AddData(new Data()
-                //{
-                //    Id = Guid.NewGuid(),
-                //    Sum = 200000,
-                //    Count = 4,
-                //    Flag = false,
-                //    Name = "sample data 2",
-                //    Prop1 = (Property1)dataTestRepository.GetProperty1s().LastOrDefault(),
-                //    Prop2 = (Property2)dataTestRepository.GetProperty2s().LastOrDefault(),
-                //    SubData = null
-                //});
+                dataTestRepository.AddData(new Data()
+                {
+                    Id = Guid.NewGuid(),
+                    Sum = 200000,
+                    Count = 4,
+                    Flag = false,
+                    Name = "sample data 2",
+                    Prop1 = (Property1)dataTestRepository.GetProperty1s().LastOrDefault(),
+                    Prop2 = (Property2)dataTestRepository.GetProperty2s().LastOrDefault(),
+                    SubData = null
+                });
             }
-            dataTestRepository.AddData(new Data()
-            {
-                Id = Guid.NewGuid(),
-                Sum = 200000,
-                Count = 4,
-                Flag = false,
-                Name = "sample data 2",
-                Prop1 = (Property1)dataTestRepository.GetProperty1s().LastOrDefault(),
-                Prop2 = (Property2)dataTestRepository.GetProperty2s().LastOrDefault(),
-                SubData = null
-            });
 
             if (!dataTestRepository.GetSubDatas().Any())
             {
                 dataTestRepository.AddSubData(new SubData() {
                     Id = Guid.NewGuid(),
-                    Parent = (Data)dataTestRepository.Get().FirstOrDefault()
+                    Data = (Data)dataTestRepository.Get().FirstOrDefault(),
+                    Value = 50
                 });
-
-                dataTestRepository.Get().FirstOrDefault().SubData.Add((SubData)dataTestRepository.GetSubDatas().FirstOrDefault());
+                dataTestRepository.AddSubData(new SubData()
+                {
+                    Id = Guid.NewGuid(),
+                    Data = (Data)dataTestRepository.Get().FirstOrDefault(),
+                    Value = 130
+                });
+                dataTestRepository.AddSubData(new SubData()
+                {
+                    Id = Guid.NewGuid(),
+                    Data = (Data)dataTestRepository.Get().LastOrDefault(),
+                    Value = 75
+                });
+                dataTestRepository.AddSubData(new SubData()
+                {
+                    Id = Guid.NewGuid(),
+                    Data = (Data)dataTestRepository.Get().LastOrDefault(),
+                    Value = 256
+                });
             }
 
         }
