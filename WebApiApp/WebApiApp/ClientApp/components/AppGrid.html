@@ -1,11 +1,23 @@
 ﻿<template id="app-grid-template">
 	<div>
 		<form id="search">
-			Search <input name="query" v-model="searchQuery">
+			Name <input name="dataQuery" v-model="searchDataQuery">
+			Title1 <input name="Property1Query" v-model="searchP1Query">
+			Title2 <input name="Property2Query" v-model="searchP2Query">
+			Count from <input name="CountFromQuery" v-model="countFromQuery" type="number"> to <input name="CountToQuery" v-model="countToQuery" type="number">
+			Sum from <input name="SumFromQuery" v-model="sumFromQuery" type="number"> to <input name="SumToQuery" v-model="sumToQuery" type="number">
+			Flag <input name="BoolQuery" v-model="boolQuery" type="checkbox">
 		</form>
 		<demo-grid :rows="gridRows"
 				   :columns="gridColumns"
-				   :filter-key="searchQuery">
+				   :filter-key="searchDataQuery"
+				   :p1filter-key="searchP1Query"
+				   :p2filter-key="searchP2Query"
+				   :cfromfilter-key="countFromQuery"
+				   :ctofilter-key="countToQuery"
+				   :sfromfilter-key="sumFromQuery"
+				   :stofilter-key="sumToQuery"
+				   :boolfilter-key="boolQuery" >
 		</demo-grid>
 	</div>
 </template>

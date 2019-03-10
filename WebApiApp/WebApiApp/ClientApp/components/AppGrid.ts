@@ -9,7 +9,14 @@ export default Vue.extend({
     },
     data: function () {
         return {
-            searchQuery: '',
+            searchDataQuery: '',
+            searchP1Query: '',
+            searchP2Query: '',
+            countFromQuery: '',
+            countToQuery: '',
+            sumFromQuery: '',
+            sumToQuery: '',
+            boolQuery: '',
             gridColumns: ['id', 'name', 'count', 'flag', 'sum', 'prop1Title', 'prop2Title', 'sumSubDataValues'],
             gridRows: [
             ]
