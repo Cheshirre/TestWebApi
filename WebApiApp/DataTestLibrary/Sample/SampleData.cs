@@ -52,7 +52,29 @@ namespace DataTestLibrary.Sample
                     Prop2 = (Property2)dataTestRepository.GetProperty2s().FirstOrDefault(),
                     SubData = null
                 });
+                //dataTestRepository.AddData(new Data()
+                //{
+                //    Id = Guid.NewGuid(),
+                //    Sum = 200000,
+                //    Count = 4,
+                //    Flag = false,
+                //    Name = "sample data 2",
+                //    Prop1 = (Property1)dataTestRepository.GetProperty1s().LastOrDefault(),
+                //    Prop2 = (Property2)dataTestRepository.GetProperty2s().LastOrDefault(),
+                //    SubData = null
+                //});
             }
+            dataTestRepository.AddData(new Data()
+            {
+                Id = Guid.NewGuid(),
+                Sum = 200000,
+                Count = 4,
+                Flag = false,
+                Name = "sample data 2",
+                Prop1 = (Property1)dataTestRepository.GetProperty1s().LastOrDefault(),
+                Prop2 = (Property2)dataTestRepository.GetProperty2s().LastOrDefault(),
+                SubData = null
+            });
 
             if (!dataTestRepository.GetSubDatas().Any())
             {

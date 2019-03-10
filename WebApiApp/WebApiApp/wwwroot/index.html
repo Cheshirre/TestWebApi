@@ -16,14 +16,17 @@
 		});
 	</script>
 
-	<div id="app-root">loading..</div>
+	<div id="app-root">
+		loading..
+	</div>
 
 	<!--Load vue.js, main.js -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.20.19/system.src.js"></script>
 	<script>
 		System.config({
 			map: {
-				"vue": "https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"
+				"vue": "https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js",
+				"axios": "https://unpkg.com/axios/dist/axios.min.js",
 			}
 		});
 		SystemJS.import('dist/main.js').then(function (m) {
