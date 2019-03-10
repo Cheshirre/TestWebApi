@@ -2,6 +2,7 @@
 import Vue from "vue";
 
 export default Vue.extend({
+    template: "#hello-template",
     props: ['name', 'initialEnthusiasm'],
     data() {
         return {

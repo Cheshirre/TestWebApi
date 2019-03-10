@@ -1,0 +1,19 @@
+<!-- ClientApp/components/AppHello.vue -->
+<template id="app-hello-template">
+	<div>
+		Name: <input v-model="name" type="text" />
+		<HelloComponent :name="name" :initialEnthusiasm="5" />
+	</div>
+</template>
+<script src="./AppHello.ts" lang="ts"></script>
+<style src="./AppHello.css"></style>
+<!-- ClientApp/components/Hello.vue -->
+<template id="hello-template">
+	<div>
+		<div class="greeting">Hello {{name}}{{exclamationMarks}}</div>
+		<button @click="decrement">-</button>
+		<button @click="increment">+</button>
+	</div>
+</template>
+<script src="./Hello.ts" lang="ts"></script>
+<style src="./Hello.css"></style>
