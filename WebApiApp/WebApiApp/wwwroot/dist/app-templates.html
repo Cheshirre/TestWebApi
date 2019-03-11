@@ -1,6 +1,7 @@
 <template id="app-grid-template">
 	<div>
 		<form id="search">
+			Enable filtering <input name="EnableQuery" v-model="enableQuery" type="checkbox">
 			Name <input name="dataQuery" v-model="searchDataQuery">
 			Title1 <input name="Property1Query" v-model="searchP1Query">
 			Title2 <input name="Property2Query" v-model="searchP2Query">
@@ -17,7 +18,8 @@
 				   :ctofilter-key="countToQuery"
 				   :sfromfilter-key="sumFromQuery"
 				   :stofilter-key="sumToQuery"
-				   :boolfilter-key="boolQuery" >
+				   :boolfilter-key="boolQuery" 
+				   :enablefilter-key="enableQuery">
 		</demo-grid>
 	</div>
 </template>

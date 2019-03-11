@@ -17,6 +17,7 @@ export default Vue.extend({
             sumFromQuery: '',
             sumToQuery: '',
             boolQuery: '',
+            enableQuery: false,
             gridColumns: ['id', 'name', 'count', 'flag', 'sum', 'prop1Title', 'prop2Title', 'sumSubDataValues'],
             gridRows: [
             ]

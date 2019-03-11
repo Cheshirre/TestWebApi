@@ -11,7 +11,7 @@ System.register("components/DemoGrid", ["vue"], function (exports_1, context_1) 
         execute: function () {
             exports_1("default", vue_1.default.extend({
                 template: '#demo-grid-template',
-                props: ['rows', 'columns', 'filterKey', 'p1filterKey', 'p2filterKey', 'cfromfilterKey', 'ctofilterKey', 'sfromfilterKey', 'stofilterKey', 'boolfilterKey'],
+                props: ['rows', 'columns', 'filterKey', 'p1filterKey', 'p2filterKey', 'cfromfilterKey', 'ctofilterKey', 'sfromfilterKey', 'stofilterKey', 'boolfilterKey', 'enablefilterKey'],
                 data: function () {
                     var sortOrders = {};
                     this.$props.columns.forEach(function (key) {
@@ -35,20 +35,18 @@ System.register("components/DemoGrid", ["vue"], function (exports_1, context_1) 
                         var sfromfilterKey = thisProps.sfromfilterKey;
                         var stofilterKey = thisProps.stofilterKey;
                         var boolfilterKey = thisProps.boolfilterKey;
+                        var enablefilterKey = thisProps.enablefilterKey;
                         var order = thisData.sortOrders[sortKey] || 1;
                         var rows = thisProps.rows;
-                        if (filterKey || p1filterKey || p2filterKey || cfromfilterKey || ctofilterKey || boolfilterKey || !boolfilterKey) {
+                        if (enablefilterKey) {
                             rows = rows.filter(function (row) {
-                                return Object.keys(row).some(function (key) {
-                                    return (filterKey ? (key == 'name' && (String(row[key]).toLowerCase().indexOf(filterKey) > -1)) : true) &&
-                                        (p1filterKey ? (key == 'prop1Title' && (String(row[key]).toLowerCase().indexOf(p1filterKey) > -1)) : true) &&
-                                        (p2filterKey ? (key == 'prop2Title' && (String(row[key]).toLowerCase().indexOf(p2filterKey) > -1)) : true) &&
-                                        (cfromfilterKey || ctofilterKey ? (key == 'count' &&
-                                            (cfromfilterKey ? (row[key] > cfromfilterKey) : true) &&
-                                            (ctofilterKey ? (row[key] < ctofilterKey) : true)) : true) &&
-                                        (sfromfilterKey ? (key == 'sum' && (row[key] > sfromfilterKey)) : true) &&
-                                        (boolfilterKey ? (key == 'flag' && (row[key] == boolfilterKey)) : true);
-                                });
+                                return (String(row.name).toLowerCase().indexOf(filterKey) > -1) &&
+                                    (String(row.prop1Title).toLowerCase().indexOf(p1filterKey) > -1) &&
+                                    (String(row.prop2Title).toLowerCase().indexOf(p2filterKey) > -1) &&
+                                    (Number(cfromfilterKey) ? (row.count > cfromfilterKey) : true) &&
+                                    (Number(ctofilterKey) ? (row.count < ctofilterKey) : true) &&
+                                    (Number(sfromfilterKey) ? (row.sum > sfromfilterKey) : true) &&
+                                    (Number(stofilterKey) ? (row.sum < stofilterKey) : true) && (row.flag == boolfilterKey);
                             });
                         }
                         if (sortKey) {
@@ -109,6 +107,7 @@ System.register("components/AppGrid", ["vue", "axios", "components/DemoGrid"], f
                         sumFromQuery: '',
                         sumToQuery: '',
                         boolQuery: '',
+                        enableQuery: false,
                         gridColumns: ['id', 'name', 'count', 'flag', 'sum', 'prop1Title', 'prop2Title', 'sumSubDataValues'],
                         gridRows: []
                     };

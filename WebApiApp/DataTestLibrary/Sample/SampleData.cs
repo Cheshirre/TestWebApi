@@ -63,7 +63,31 @@ namespace DataTestLibrary.Sample
                     Prop2 = (Property2)dataTestRepository.GetProperty2s().LastOrDefault(),
                     SubData = null
                 });
+                dataTestRepository.AddData(new Data()
+                {
+                    Id = Guid.NewGuid(),
+                    Sum = 10,
+                    Count = 10,
+                    Flag = true,
+                    Name = "sample data 3",
+                    Prop1 = (Property1)dataTestRepository.GetProperty1s().FirstOrDefault(),
+                    Prop2 = (Property2)dataTestRepository.GetProperty2s().FirstOrDefault(),
+                    SubData = null
+                });
+                dataTestRepository.AddData(new Data()
+                {
+                    Id = Guid.NewGuid(),
+                    Sum = 200000,
+                    Count = 4,
+                    Flag = false,
+                    Name = "sample data 4",
+                    Prop1 = (Property1)dataTestRepository.GetProperty1s().LastOrDefault(),
+                    Prop2 = (Property2)dataTestRepository.GetProperty2s().LastOrDefault(),
+                    SubData = null
+                });
             }
+
+
 
             if (!dataTestRepository.GetSubDatas().Any())
             {
