@@ -22,17 +22,21 @@ namespace DataTestLibrary
                 case "<": return Expression.LessThan(left, right); 
                 default:
                 case "=": return Expression.Equal(left, right); 
-                    //case "%like": return Expression.Equal(left, right); //тут долна быть обработа строк
+                    //case "%like": return Expression.Equal(left, right); //to-do: тут должна быть обработка like
             }
         }
 
-        public static IQueryable<T> QueryExpression<T>(IQueryable<T> source)
+        public static IQueryable<T> QueryExpression<T>(IQueryable<T> source, string filter)
         {
+            //to-do: написать класс фильтра
             var parameter = Expression.Parameter(typeof(T), "p");
+
+            //to-do: здесь нужна обработка в зависимости от того, что в фильтре приходит
 
             var e1 = DynamicQueryExpression.QueryExpression<T>(source, "Count", "3", ">", parameter);
             var e2 = DynamicQueryExpression.QueryExpression<T>(source, "Count", "10", "<", parameter);
 
+            //to-do: собираем все фильтры
             Expression res = Expression.And(e1, e2);
 
             MethodCallExpression resultExp = Expression.Call(
