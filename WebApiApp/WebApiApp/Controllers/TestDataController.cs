@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApiApp.Factory;
 using WebApiApp.Models;
+using System.Linq.Expressions;
 
 namespace WebApiApp.Controllers
 {
@@ -24,9 +25,18 @@ namespace WebApiApp.Controllers
             _dataViewModelFactory = dataViewModelFactory;
         }
 
-        [HttpGet]
-        public IEnumerable<DataViewModel> Get()
+
+        class Customer
         {
+            public int Id { get; set; }
+            public string Name { get; set; }
+        }
+
+        [HttpGet]
+        public IEnumerable<DataViewModel> Get(string filter = null)
+        {
+            var target = _dataTestRepository.Get("dfdf");
+
             return _dataViewModelFactory.Create();
         }
     }

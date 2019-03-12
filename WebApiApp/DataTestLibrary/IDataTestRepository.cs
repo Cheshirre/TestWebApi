@@ -9,7 +9,8 @@ namespace DataTestLibrary
 {
     public interface IDataTestRepository
     {
-        IEnumerable<IData> Get();
+        IEnumerable<IData> Get(string filter = null);
+        IEnumerable<Data> SimpleGet();
         IEnumerable<ISubData> GetSubDatas();
         IEnumerable<IProperty1> GetProperty1s();
         IEnumerable<IProperty2> GetProperty2s();

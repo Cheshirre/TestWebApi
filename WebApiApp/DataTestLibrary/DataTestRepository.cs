@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using DataTestLibrary.Interface;
 using Microsoft.EntityFrameworkCore;
@@ -17,9 +18,23 @@ namespace DataTestLibrary
             _dbContext = dbContext;
         }
       
-        public IEnumerable<IData> Get()
+        public IEnumerable<IData> Get(string filter = null)
         {
-            return _dbContext.Datas.Include(x => x.Prop1).Include(x => x.Prop2).Include(x => x.SubData).AsEnumerable();
+            IQueryable<IData> target = _dbContext.Datas.Include(x => x.Prop1).Include(x => x.Prop2).Include(x => x.SubData).AsQueryable();
+
+            if (filter == null)
+            {
+                return target.AsEnumerable();
+            }
+            else
+            {               
+                return DynamicQueryExpression.QueryExpression<Data>((IQueryable<Data>)target).AsEnumerable();
+            }
+        }
+
+        public IEnumerable<Data> SimpleGet()
+        {
+            return _dbContext.Datas;
         }
 
         public IEnumerable<ISubData> GetSubDatas()
