@@ -26,9 +26,8 @@ namespace DataTestLibrary
             }
         }
 
-        public static IQueryable<T> QueryExpression<T>(IQueryable<T> source, string filter)
+        public static IQueryable<T> QueryExpression<T>(IQueryable<T> source, Filter filter)
         {
-            //to-do: написать класс фильтра
             var parameter = Expression.Parameter(typeof(T), "p");
 
             //to-do: здесь нужна обработка в зависимости от того, что в фильтре приходит
