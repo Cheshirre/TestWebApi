@@ -33,9 +33,23 @@ namespace WebApiApp.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<DataViewModel> Get(string filter = null)
+        public IEnumerable<DataViewModel> Get()
         {
-            var target = _dataTestRepository.Get("dfdf");
+            //to-do: получаем JSON filter с клиента
+            //на клиенте динамическое формирование списка
+            //like в фильтре пока не работает - не успла пока нормально реализовать
+
+            //for test
+            IFilter filter = new Filter() {
+                filterParams = new List<FilterParams>()
+            };
+
+            filter.filterParams.Add(new FilterParams() { PropertyName = "Count", ParamValue = "3", ExpressionType = ">" });
+            filter.filterParams.Add(new FilterParams() { PropertyName = "Count", ParamValue = "10", ExpressionType = "<" });
+            //filter.filterParams.Add(new FilterParams() { PropertyName = "Name", ParamValue = "4", ExpressionType = "%like%" });
+            filter.filterParams.Add(new FilterParams() { PropertyName = "Flag", ParamValue = "true", ExpressionType = "=" });
+
+            var target = _dataTestRepository.Get(filter);
 
             return _dataViewModelFactory.Create();
         }

@@ -18,7 +18,7 @@ namespace DataTestLibrary
             _dbContext = dbContext;
         }
       
-        public IEnumerable<IData> Get(string filter = null)
+        public IEnumerable<IData> Get(IFilter filter = null)
         {
             IQueryable<IData> target = _dbContext.Datas.Include(x => x.Prop1).Include(x => x.Prop2).Include(x => x.SubData).AsQueryable();
 
@@ -28,7 +28,7 @@ namespace DataTestLibrary
             }
             else
             {               
-                return DynamicQueryExpression.QueryExpression<Data>((IQueryable<Data>)target).AsEnumerable();
+                return DynamicQueryExpression.QueryExpression<Data>((IQueryable<Data>)target, filter).AsEnumerable();
             }
         }
 

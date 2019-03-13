@@ -36,6 +36,7 @@ namespace WebApiApp
 
             services.AddScoped<IDataTestRepository, DataTestRepository>();
             services.AddScoped<IDataViewModelFactory, DataViewModelFactory>();
+            services.AddScoped<IFilter, Filter>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
